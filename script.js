@@ -6,6 +6,7 @@ function displayCurrent(current) {
 // <section
    //           id="today"
      //       ></section>
+
 }
 
 function displayFiveDay(daily) {
@@ -37,6 +38,19 @@ function searchCityWeather() {
   })
   .then(function (body) {
     console.log(body)
+    var today=document.getElementById("today")
+    var temp=document.createElement("p")
+    temp.textContent="temp: " + body.current.temp +" F"
+    today.append(temp)
+    var wind=document.createElement("p")
+    wind.textContent="wind: " + body.current.wind_speed +" MPH"
+    today.append(wind)
+    var humidity=document.createElement("p")
+    humidity.textContent="humidity: " + body.current.humidity+" %"
+    today.append(humidity)
+    var uvi=document.createElement("p")
+    uvi.textContent="UV-Index: " + body.current.uvi
+    today.append(uvi)
     const current = body.current;
     const daily = body.daily;
     displayCurrent(current);
