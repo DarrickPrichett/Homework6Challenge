@@ -1,8 +1,22 @@
 const weatherApiRootUrl = 'https://api.openweathermap.org';
 const weatherApiKey = 'd91f911bcf2c0f925fb6535547a5ddc9';
 
-function displayCurrent(current) {
+$(document).function.displayCurrent(current) {
+  var today=document.getElementById("today")
+    var temp=document.createElement("p")
+    temp.textContent="temp: " + body.current.temp +" F"
+    today.append(temp)
+    var wind=document.createElement("p")
+    wind.textContent="wind: " + body.current.wind_speed +" MPH"
+    today.append(wind)
+    var humidity=document.createElement("p")
+    humidity.textContent="humidity: " + body.current.humidity+" %"
+    today.append(humidity)
+    var uvi=document.createElement("p")
+    uvi.textContent="UV-Index: " + body.current.uvi
+    today.append(uvi)
 //Use jQuery to add to here:
+
 // <section
    //           id="today"
      //       ></section>
@@ -38,6 +52,9 @@ function searchCityWeather() {
   })
   .then(function (body) {
     console.log(body)
+    const current = body.current;
+    const daily = body.daily;
+    displayCurrent(current);
     var today=document.getElementById("today")
     var temp=document.createElement("p")
     temp.textContent="temp: " + body.current.temp +" F"
@@ -51,9 +68,6 @@ function searchCityWeather() {
     var uvi=document.createElement("p")
     uvi.textContent="UV-Index: " + body.current.uvi
     today.append(uvi)
-    const current = body.current;
-    const daily = body.daily;
-    displayCurrent(current);
     displayFiveDay(daily);
     saveToLocalState(city);
   })
