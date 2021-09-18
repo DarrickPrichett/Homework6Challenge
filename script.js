@@ -1,20 +1,25 @@
 const weatherApiRootUrl = 'https://api.openweathermap.org';
 const weatherApiKey = 'd91f911bcf2c0f925fb6535547a5ddc9';
+const city = document.querySelector('#searchTerm').value;
 
 function displayCurrent(current) {
-//Use jQuery to add to here:
-
-// <section
-   //           id="today"
-     //       ></section>
+ 
 
 }
 
 function displayFiveDay(daily) {
-//Use jQuery to add to here:
-// <section
-   //           id="forecast"
-     //       ></section>
+  let forecastName = document.querySelector('#forecastName');
+  forecastName.textContent = "5-Day Forecast:"
+  forecastElement.innerHTML = " ";
+  for (let i =1; i < 6; i++) {
+    let cardElement = document.createElement("div");
+    cardElement.classList.add("card", "bg-primary");
+    let cardHeader = document.createElement("h4");
+    cardHeader.classList.add("card-title");
+    cardHeader.textContent=addDays(now, i);
+    cardElement.appendChild(cardHeader)
+    forecastElement.appendChild(cardElement)
+  }
 }
 
 function saveToLocalState(city) {
@@ -44,7 +49,7 @@ function searchCityWeather() {
     displayCurrent(current);
     var today=document.getElementById("today")
     var cityName=document.createElement("h1")
-    cityName.textContent=city
+    cityName.textContent=city +" "+ moment().subtract(10, 'days').calendar();
     today.append(cityName)
     var temp=document.createElement("p")
     temp.textContent="temp: " + body.current.temp +" F"
