@@ -2,7 +2,6 @@ const weatherApiRootUrl = 'https://api.openweathermap.org';
 const weatherApiKey = 'd91f911bcf2c0f925fb6535547a5ddc9';
 
 function displayCurrent(current) {
-  
 //Use jQuery to add to here:
 
 // <section
@@ -44,6 +43,8 @@ function searchCityWeather() {
     const daily = body.daily;
     displayCurrent(current);
     var today=document.getElementById("today")
+    var cityName=document.createElement("h1")
+    cityName.textContent=city + today
     var temp=document.createElement("p")
     temp.textContent="temp: " + body.current.temp +" F"
     today.append(temp)
