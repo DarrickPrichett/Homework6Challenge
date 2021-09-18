@@ -44,7 +44,8 @@ function searchCityWeather() {
     displayCurrent(current);
     var today=document.getElementById("today")
     var cityName=document.createElement("h1")
-    cityName.textContent=city + today
+    cityName.textContent=city
+    today.append(cityName)
     var temp=document.createElement("p")
     temp.textContent="temp: " + body.current.temp +" F"
     today.append(temp)
