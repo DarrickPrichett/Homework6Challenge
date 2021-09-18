@@ -1,7 +1,7 @@
 const weatherApiRootUrl = 'https://api.openweathermap.org';
 const weatherApiKey = 'd91f911bcf2c0f925fb6535547a5ddc9';
 
-$(document).function.displayCurrent(current) {
+function displayCurrent(current) {
   var today=document.getElementById("today")
     var temp=document.createElement("p")
     temp.textContent="temp: " + body.current.temp +" F"
