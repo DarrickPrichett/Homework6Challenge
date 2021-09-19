@@ -10,11 +10,18 @@ function displayCurrent(current) {
  
 
 }
-
+function writeDate(date) {
+  var day = getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+  var year = date.getFullYear();
+  return month + '/' + day + '/' + year;  
+}
 function buildFiveDay(date, days) {
   let dayArray = new Date(date);
   dayArray.setDate(dayArray.getDate() + days);
-  dayArray = body.current.dt(dayArray);
+  dayArray = writeDate(dayArray);
   return dayArray;
 }
 function displayFiveDay(daily) {
