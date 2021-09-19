@@ -29,11 +29,15 @@ function displayFiveDay(daily) {
     cardHeader.classList.add("card-title");
     cardHeader.textContent=buildFiveDay(present, i);
     cardElement.appendChild(cardHeader)
+    forecastElement.appendChild(cardElement);
+    cardElement.appendChild(cardHeader)
     forecastElement.appendChild(cardElement)
   }
 }
 
 function saveToLocalState(city) {
+  history.push(city);
+  localStorage.setItem("city", history);
 
 }
 
