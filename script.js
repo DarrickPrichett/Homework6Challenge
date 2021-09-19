@@ -6,39 +6,50 @@ const present = new Date();
 const todayElement = document.querySelector('#today');
 let cities = [];
 
-function displayCurrent(current) {
- 
-
-}
-function writeDate(date) {
-  var day = getDate().toString();
-  day = day.length > 1 ? day : '0' + day;
-  var month = (1 + date.getMonth()).toString();
-  month = month.length > 1 ? month : '0' + month;
+function formatDate(date) {
   var year = date.getFullYear();
+  var month = (1 + date.getMonth()).toString();
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+  month = month.length > 1 ? month : '0' + month;
   return month + '/' + day + '/' + year;  
 }
 function buildFiveDay(date, days) {
   let dayArray = new Date(date);
   dayArray.setDate(dayArray.getDate() + days);
-  dayArray = writeDate(dayArray);
+  dayArray = formatDate(dayArray);
   return dayArray;
 }
-function displayFiveDay(Forecast, timezone) {
-  console.log(forecast, timezone)
-  let forecastName = document.querySelector('#forecastName');
+
+function displayCurrent(current) {
+  let cityTitle = document.createElement("h2");
+  cityTitle.setAttribute("class", "title");
+  cityTitle.textContent = `${city} (${formatDate(present)})`;
+  todayElement.appendChild(cityTitle);
+  let weatherInfo = document.createElement("p")
+  weatherInfo.setAttribute("class", "info")
+  weatherInfo.textContent = `Temp: ${current.temp} F
+    Wind: ${current.wind_speed} MPH
+    Humidity: ${current.humidity}%
+    UV Index: ${current.uvi}`;
+  cityTitle.appendChild(weatherInfo);
+}
+
+function displayFiveDay(daily) {
+  console.log(daily)
+  const forecastName = document.querySelector('#forecastName');
   forecastName.textContent = "5-Day Forecast:"
-  forecastElement.innerHTML = " ";
+  forecastElement.appendChild(forecastName);
   for (let i =1; i < 6; i++) {
-    let cardElement = document.createElement("div");
-    cardElement.classList.add("card", "bg-primary");
+    let dailyWeatherInfo = document.createElement("div");
+    dailyWeatherInfo.classList.add("card", "bg-primary");
     let cardHeader = document.createElement("h4");
     cardHeader.classList.add("card-title");
     cardHeader.textContent=buildFiveDay(present, i);
-    cardElement.appendChild(cardHeader)
-    forecastElement.appendChild(cardElement);
-    cardElement.appendChild(cardHeader)
-    forecastElement.appendChild(cardElement)
+    dailyWeatherInfo.appendChild(cardHeader)
+    forecastElement.appendChild(dailyWeatherInfo);
+    dailyWeatherInfo.appendChild(cardHeader)
+    forecastElement.appendChild(dailyWeatherInfo)
   }
 }
 
@@ -85,6 +96,7 @@ function searchCityWeather() {
     var uvi=document.createElement("p")
     uvi.textContent="UV-Index: " + body.current.uvi
     todayElement.append(uvi)
+
     displayFiveDay(daily);
     saveToLocalState(city);
   })
