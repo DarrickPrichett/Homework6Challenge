@@ -1,6 +1,9 @@
 const weatherApiRootUrl = 'https://api.openweathermap.org';
 const weatherApiKey = 'd91f911bcf2c0f925fb6535547a5ddc9';
-const city = document.querySelector('#searchTerm').value;
+let city = document.querySelector('#searchTerm').value;
+const forecastElement = document.querySelector('#forecast');
+const now = new Date();
+let cities = [];
 
 function displayCurrent(current) {
  
@@ -8,6 +11,7 @@ function displayCurrent(current) {
 }
 
 function displayFiveDay(daily) {
+  console.log(daily)
   let forecastName = document.querySelector('#forecastName');
   forecastName.textContent = "5-Day Forecast:"
   forecastElement.innerHTML = " ";
