@@ -24,8 +24,8 @@ function buildFiveDay(date, days) {
   dayArray = writeDate(dayArray);
   return dayArray;
 }
-function displayFiveDay(daily) {
-  console.log(daily)
+function displayFiveDay(Forecast, timezone) {
+  console.log(forecast, timezone)
   let forecastName = document.querySelector('#forecastName');
   forecastName.textContent = "5-Day Forecast:"
   forecastElement.innerHTML = " ";
