@@ -13,9 +13,9 @@ SO THAT I can plan a trip accordingly.
 
 ## Websites
 
+https://github.com/DarrickPrichett/Homework6Challenge
 
-
-
+https://darrickprichett.github.io/Homework6Challenge/
 
 ## Contributor
 
