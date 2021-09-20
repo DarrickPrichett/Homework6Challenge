@@ -51,12 +51,12 @@ function displayFiveDay(daily) {
   forecastName.textContent = "5-Day Forecast:"
   forecastElement.appendChild(forecastName);
   for (let i =1; i < 6; i++) {
-    let weatherInfo = document.createElement("p")
+    let weatherInfo = document.createElement("div")
     weatherInfo.setAttribute("class", "info")
-    weatherInfo.innerHTML = `<div> Temp: ${daily[i].temp.day} F</div>
-    <div> Wind: ${daily[i].wind_speed} MPH</div>
-    <div> Humidity: ${daily[i].humidity}%</div>
-    <div> UV Index: ${daily[i].uvi}</div>`;
+    weatherInfo.innerHTML = `<p> Temp: ${daily[i].temp.day} F</p>
+    <p> Wind: ${daily[i].wind_speed} MPH</p>
+    <p> Humidity: ${daily[i].humidity}%</p>
+    <p> UV Index: ${daily[i].uvi}</p>`;
   forecastElement.appendChild(weatherInfo);
   }
 }
