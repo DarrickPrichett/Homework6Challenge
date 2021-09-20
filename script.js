@@ -5,6 +5,7 @@ const forecastElement = document.querySelector('#forecast');
 const present = new Date();
 const todayElement = document.querySelector('#today');
 let cities = [];
+var userCity =
 
 function formatDate(date) {
   var year = date.getFullYear();
@@ -14,6 +15,7 @@ function formatDate(date) {
   month = month.length > 1 ? month : '0' + month;
   return month + '/' + day + '/' + year;  
 }
+
 function buildFiveDay(date, days) {
   let dayArray = new Date(date);
   dayArray.setDate(dayArray.getDate() + days);
@@ -28,6 +30,14 @@ function displayCurrent(current) {
   todayElement.appendChild(cityTitle);
   let weatherInfo = document.createElement("p")
   weatherInfo.setAttribute("class", "info")
+  function formatDate(date) {
+    var year = date.getFullYear();
+    var month = (1 + date.getMonth()).toString();
+    var day = date.getDate().toString();
+    day = day.length > 1 ? day : '0' + day;
+    month = month.length > 1 ? month : '0' + month;
+    return month + '/' + day + '/' + year;  
+  }
   weatherInfo.innerHTML = `<div> Temp: ${current.temp} F</div>
   <div> Wind: ${current.wind_speed} MPH</div>
   <div> Humidity: ${current.humidity}%</div>
@@ -42,16 +52,20 @@ function displayFiveDay(daily) {
   forecastElement.appendChild(forecastName);
   for (let i =1; i < 6; i++) {
     let weatherInfo = document.createElement("p")
-  weatherInfo.setAttribute("class", "info")
-  weatherInfo.textContent = `Temp: ${daily.i.temp} F
-    Wind: ${daily.i.wind_speed} MPH
-    Humidity: ${daily.i.humidity}%
-    UV Index: ${daily.i.uvi}`;
-  cityTitle.appendChild(weatherInfo);
+    weatherInfo.setAttribute("class", "info")
+    weatherInfo.textContent = `<div> Temp: ${daily[i].temp} F</div>
+    <div> Wind: ${daily[i].wind_speed} MPH</div>
+    <div> Humidity: ${daily[i].humidity}%</div>
+    <div> UV Index: ${daily[i].uvi}</div>`;
+  forecastElement.appendChild(weatherInfo);
   }
 }
 
 function saveToLocalState(city) {
+  var cities = localStorage.getItem('city');
+  if (city === null){
+    return;
+  }
   history.push(city);
   localStorage.setItem("city", history);
 
