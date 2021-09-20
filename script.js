@@ -5,7 +5,7 @@ const forecastElement = document.querySelector('#forecast');
 const present = new Date();
 const todayElement = document.querySelector('#today');
 let cities = [];
-var userCity =
+//var userCity =
 
 function formatDate(date) {
   var year = date.getFullYear();
@@ -30,14 +30,6 @@ function displayCurrent(current) {
   todayElement.appendChild(cityTitle);
   let weatherInfo = document.createElement("p")
   weatherInfo.setAttribute("class", "info")
-  function formatDate(date) {
-    var year = date.getFullYear();
-    var month = (1 + date.getMonth()).toString();
-    var day = date.getDate().toString();
-    day = day.length > 1 ? day : '0' + day;
-    month = month.length > 1 ? month : '0' + month;
-    return month + '/' + day + '/' + year;  
-  }
   weatherInfo.innerHTML = `<div> Temp: ${current.temp} F</div>
   <div> Wind: ${current.wind_speed} MPH</div>
   <div> Humidity: ${current.humidity}%</div>
@@ -52,8 +44,12 @@ function displayFiveDay(daily) {
   forecastElement.appendChild(forecastName);
   for (let i =1; i < 6; i++) {
     let weatherInfo = document.createElement("div")
+    const weatherIcon = document.createElement("img");
+    const icon = daily[i].weather[0].icon
+    console.log(icon);
+    weatherIcon.setAttribute("src", "http://openweathermap.org/img/wn/10d@2x.png");
     weatherInfo.setAttribute("class", "info")
-    weatherInfo.innerHTML = `<p> Temp: ${daily[i].temp.day} F</p>
+    weatherInfo.innerHTML = `<img src="http://openweathermap.org/img/wn/${icon}@2x.png"></img><p>${formatDate(new Date(1000*daily[i].dt))}</p><p> Temp: ${daily[i].temp.day} F</p>
     <p> Wind: ${daily[i].wind_speed} MPH</p>
     <p> Humidity: ${daily[i].humidity}%</p>
     <p> UV Index: ${daily[i].uvi}</p>`;
