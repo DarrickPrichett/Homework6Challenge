@@ -53,7 +53,7 @@ function displayFiveDay(daily) {
   for (let i =1; i < 6; i++) {
     let weatherInfo = document.createElement("p")
     weatherInfo.setAttribute("class", "info")
-    weatherInfo.textContent = `<div> Temp: ${daily[i].temp} F</div>
+    weatherInfo.innerHTML = `<div> Temp: ${daily[i].temp.day} F</div>
     <div> Wind: ${daily[i].wind_speed} MPH</div>
     <div> Humidity: ${daily[i].humidity}%</div>
     <div> UV Index: ${daily[i].uvi}</div>`;
