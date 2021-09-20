@@ -26,11 +26,11 @@ function buildFiveDay(date, days) {
 function displayCurrent(current) {
   let cityTitle = document.createElement("h3");
   cityTitle.setAttribute("class", "title");
-  cityTitle.textContent = `${city} (${formatDate(present)})`;
+  cityTitle.textContent = `${city} (${formatDate(present)})`
   todayElement.appendChild(cityTitle);
   let weatherInfo = document.createElement("p")
   weatherInfo.setAttribute("class", "info")
-  weatherInfo.innerHTML = `<div> Temp: ${current.temp} F</div>
+  weatherInfo.innerHTML = `<img src="http://openweathermap.org/img/wn/10d@2x.png"></img><div> Temp: ${current.temp} F</div>
   <div> Wind: ${current.wind_speed} MPH</div>
   <div> Humidity: ${current.humidity}%</div>
   <div> UV Index: ${current.uvi}</div>`;
@@ -57,7 +57,7 @@ function displayFiveDay(daily) {
   }
 }
 
-function saveToLocalState(city) {
+function saveToLocalState(current, daily) {
   var cities = localStorage.getItem('city');
   if (city === null){
     return;
